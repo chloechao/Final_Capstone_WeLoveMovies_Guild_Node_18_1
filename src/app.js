@@ -13,6 +13,7 @@ function errorHandler(error, req, res, next) {
     const { status = 500, message = "Something went wrong!" } = error;
     res.status(status).json({ error: message });
 }
+
 const app = express();
 
 // Middleware
@@ -30,4 +31,11 @@ app.use(notFound);
 // Handle errors
 app.use(errorHandler);
 
+const PORT = process.env.PORT || 5001; // Default to port 5001 if PORT is not set
+
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
+
 module.exports = app;
+
